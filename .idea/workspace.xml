@@ -10,8 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8a1df0c-1a51-4b00-9340-56bca63fee68" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/util/PersonValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/PeopleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/PeopleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/PersonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/PersonDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +213,9 @@
       <workItem from="1672254680409" duration="5453000" />
       <workItem from="1672849377789" duration="5681000" />
       <workItem from="1672869633531" duration="5080000" />
-      <workItem from="1672948188993" duration="3811000" />
+      <workItem from="1672948188993" duration="5809000" />
+      <workItem from="1673031113004" duration="597000" />
+      <workItem from="1673118375350" duration="8202000" />
     </task>
     <task id="LOCAL-00001" summary="code with xml-configuration">
       <created>1670960859813</created>
@@ -308,7 +315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672181266581</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="crud app: one_to_many, many_to_many, one_to_one, join">
+      <created>1672955351198</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1672955351198</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,6 +354,7 @@
     <MESSAGE value="crud app: first_db, jdbcTemplate" />
     <MESSAGE value="crud app: first_db, Enviroment" />
     <MESSAGE value="crud app: first_db,Batch update" />
-    <option name="LAST_COMMIT_MESSAGE" value="crud app: first_db,Batch update" />
+    <MESSAGE value="crud app: one_to_many, many_to_many, one_to_one, join" />
+    <option name="LAST_COMMIT_MESSAGE" value="crud app: one_to_many, many_to_many, one_to_one, join" />
   </component>
 </project>
