@@ -4,67 +4,65 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Person {
-    private int id;
+    private int personId;
     @NotEmpty(message="Name should not be empty")
     @Size(min=2, max=30, message="Name should be between 2 and 30 characters")
-    private String name;
-    @NotEmpty(message = "Email should not be empty")
-    @Email(message = "Email should be valid")
-    private String email;
-    @Min(value = 0, message = "Age should be greater than 0")
-    private int age;
+    private String fullName;
 
+    @Min(value = 1900, message = "Age should be greater than 1900")
+    private int yearOfBirth;
+    private List<Person> people= new ArrayList<>();
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public Person(List<Person> people) {
+        this.people = people;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    List<Book> books = new ArrayList<>();
     public Person() {
     }
 
-    public Person(int id, String name, String email, int age) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.age = age;
+    public Person(int personId, String fullName, int yearOfBirth) {
+        this.personId = personId;
+        this.fullName = fullName;
+        this.yearOfBirth = yearOfBirth;
     }
 
     public int getId() {
-        return id;
+        return personId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getPersonId() {
+        return personId;
     }
 
-    public String getName() {
-        return name;
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public String getEmail() {
-        return email;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public int getYearOfBirth() {
+        return yearOfBirth;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", age=" + age +
-                '}';
+    public void setYearOfBirth(int yearOfBirth) {
+        this.yearOfBirth = yearOfBirth;
     }
 }

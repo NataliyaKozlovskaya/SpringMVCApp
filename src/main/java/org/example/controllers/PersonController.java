@@ -12,12 +12,10 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/people")
-public class PeopleController {
-
+public class PersonController {
     private final PersonDAO personDAO;
-
     @Autowired
-    public PeopleController(PersonDAO personDAO) {
+    public PersonController(PersonDAO personDAO) {
         this.personDAO = personDAO;
     }
 
@@ -27,10 +25,10 @@ public class PeopleController {
         model.addAttribute("people", personDAO.index());
         return "people/index";
     }
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model){
+    @GetMapping("/{personId}")
+    public String show(@PathVariable("personId") int personId, Model model){
 // получим одного человка по id из дао и передадим на отображение в представление
-        model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("person", personDAO.show(personId));
         return  "people/show";
     }
     @GetMapping("/new")
@@ -45,21 +43,21 @@ public class PeopleController {
         personDAO.save(person);
         return "redirect: /people";
     }
-    @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id){
-        model.addAttribute("person", personDAO.show(id));
+    @GetMapping("/{personId}/edit")
+    public String edit(Model model, @PathVariable("personId") int personId){
+        model.addAttribute("person", personDAO.show(personId));
         return "people/edit";
     }
-    @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult, @PathVariable("id") int id){
+    @PatchMapping("/{personId}")
+    public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult, @PathVariable("personId") int personId){
         if (bindingResult.hasErrors())
             return "people/edit";
-        personDAO.update(id, person);
+        personDAO.update(personId, person);
         return "redirect:/people";
     }
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id){
-        personDAO.delete(id);
+    @DeleteMapping("/{personId}")
+    public String delete(@PathVariable("personId") int personId){
+        personDAO.delete(personId);
         return "redirect:/people";
     }
 
