@@ -6,9 +6,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class PersonDAO {
@@ -18,11 +17,14 @@ public class PersonDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Person> index() {
+    public List<Person> getAll() {
        return jdbcTemplate.query("SELECT * FROM Person", new BeanPropertyRowMapper<>(Person.class));
     }
-
-    public Person show(int personId) {
+    public Optional<Person> getByFullName(String fullName) {
+        return jdbcTemplate.query("SELECT * FROM Person WHERE fullName=?", new Object[]{fullName}, new BeanPropertyRowMapper<>(Person.class))
+                .stream().findAny();
+    }
+    public Person getById(int personId) {
         return jdbcTemplate.query("SELECT * FROM Person WHERE personId=?", new Object[]{personId}, new BeanPropertyRowMapper<>(Person.class))
                 .stream().findAny().orElse(null);
     }
@@ -32,7 +34,8 @@ public class PersonDAO {
     }
 
     public void update(int personId, Person updatedPerson) {
-        jdbcTemplate.update("UPDATE Person SET fullName=?, yearOfBirth=? WHERE personId=?", updatedPerson.getFullName(), updatedPerson.getYearOfBirth(), personId);
+        jdbcTemplate.update("UPDATE Person SET fullName=?, yearOfBirth=? WHERE personId=?",
+                updatedPerson.getFullName(), updatedPerson.getYearOfBirth(), personId);
     }
     public void delete(int personId) {
         jdbcTemplate.update("DELETE FROM Person WHERE personId=?", personId);

@@ -1,15 +1,19 @@
 package org.example.models;
 
-import java.util.ArrayList;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 public class Book {
     private int bookId;
     private int personId;
+    @NotEmpty(message="Title should not be empty")
+    @Size(min=1, max=50, message="Title should be between 1 and 50 characters")
     private String title;
+    @NotEmpty(message="Author's name should not be empty")
+    @Size(min=1, max=30, message="Author's name should be between 1 and 30 characters")
     private String author;
     private int year;
-    List<Book> books = new ArrayList<>();
 
     public Book() {
     }
@@ -20,7 +24,6 @@ public class Book {
         this.title = title;
         this.author = author;
         this.year = year;
-        this.books = books;
     }
 
     public int getBookId() {
@@ -63,11 +66,4 @@ public class Book {
         this.year = year;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
 }

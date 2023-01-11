@@ -13,29 +13,24 @@ public class Person {
     @Size(min=2, max=30, message="Name should be between 2 and 30 characters")
     private String fullName;
 
-    @Min(value = 1900, message = "Age should be greater than 1900")
+    @Min(value = 1900, message = "Age should be bigger than 1900")
     private int yearOfBirth;
-    private List<Person> people= new ArrayList<>();
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public Person(List<Person> people) {
-        this.people = people;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
 
     List<Book> books = new ArrayList<>();
     public Person() {
     }
-
     public Person(int personId, String fullName, int yearOfBirth) {
         this.personId = personId;
         this.fullName = fullName;
         this.yearOfBirth = yearOfBirth;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     public int getId() {

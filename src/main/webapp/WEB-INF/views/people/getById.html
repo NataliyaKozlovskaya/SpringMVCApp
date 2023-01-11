@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница человека</title>
+</head>
+<body>
+
+<p th:text="${person.getFullName()} + ', ' + ${person.getYearOfBirth()}">VALUE</p>
+
+<!--<form th:method="GET" th:action="@{/books/{personId}(personId=${book.getPersonId()})}" th:object="${book}">-->
+<p th:text="Человек пока не взял ни одной книги"
+        th:if="${#fields.isEmpty(${book.getPersonId()})}">view</p>
+
+
+<div th:each="book : ${allBooks}"></div>
+<a th:text="Книги':' ${book.getTitle()} + ', ' +  ${book.getAuthor()} + ', ' +  ${book.getYear()}"></a>
+<!--   th:if="${not #fields.isEmpty(book.getPersonId)}">view</a>-->
+
+
+<hr>
+
+<a th:href="@{/people/{personId}/edit(personId=${person.getPersonId()})}"><input type="submit" value="Редактировать"/></a>
+
+<form th:method="DELETE" th:action="@{/people/{personId}(personId=${person.getPersonId()})}">
+    <br/>
+    <input type="submit" value="Удалить!"/>
+
+</form>
+</body>
+</html>
+
+
+
+<!--    <a href="comments.html"-->
+<!--       th:href="@{/product/comments(prodId=${prod.id})}"-->
+<!--       th:if="${not #lists.isEmpty(prod.comments)}">view</a>-->
+<!--    th:unless="${#lists.isEmpty(prod.comments)}">view</a>-->
