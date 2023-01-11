@@ -1,5 +1,6 @@
 package org.example.controllers;
 
+import org.example.dao.BookDAO;
 import org.example.dao.PersonDAO;
 import org.example.models.Person;
 import org.example.util.PersonValidator;
@@ -16,10 +17,12 @@ import java.util.List;
 @RequestMapping("/people")
 public class PersonController {
     private final PersonDAO personDAO;
+    private final BookDAO bookDAO;
     private final PersonValidator personValidator;
     @Autowired
-    public PersonController(PersonDAO personDAO, PersonValidator personValidator) {
+    public PersonController(PersonDAO personDAO, BookDAO bookDAO, PersonValidator personValidator) {
         this.personDAO = personDAO;
+        this.bookDAO = bookDAO;
         this.personValidator = personValidator;
     }
 
@@ -68,4 +71,11 @@ public class PersonController {
         return "redirect:/people";
     }
 
+
+//    @GetMapping("/{personId}")
+//    public String getBookByPersonId(@PathVariable("personId") int personId, Model model){
+//        model.addAttribute("book", bookDAO.getByPersonId(personId));
+////        person.setBooks(allBooksByPersonId);
+//        return "/getById";
+//    }
 }

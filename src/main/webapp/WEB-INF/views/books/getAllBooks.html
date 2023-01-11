@@ -6,11 +6,11 @@
 </head>
 <body>
 
-<div th:each="book : ${allBooks}">
+<div th:each="book : ${books}">
     <a th:href="@{/books/{bookId}(bookId=${book.getBookId()})}"
        th:text = "${book.getTitle()} + ', ' +  ${book.getAuthor()} + ', ' +  ${book.getYear()}">never will see</a>
 </div>
-<a href="/books/new">Добавить книгу</a>
+<a href="/books/newBook">Добавить книгу</a>
 
 </body>
 </html>

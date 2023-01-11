@@ -27,10 +27,18 @@ public class BookController {
         return "books/getAllBooks";
     }
     @GetMapping("/{bookId}")
-    public String getBookByIdContr(@PathVariable("bookId") Book book, Model model){
-        model.addAttribute("book", bookDAO.getById(book.getBookId()));
+    public String getBookByIdContr(@PathVariable("bookId") int bookId, Model model){
+        model.addAttribute("book", bookDAO.getById(bookId));
         return "/getBookById";
     }
+
+    @GetMapping("/{personId}")
+    public String getBookByPersonId(@PathVariable("personId") int personId, Model model){
+        List<Book> allBookByPersonId = bookDAO.getByPersonId(personId);
+        model.addAttribute("allBooks", allBookByPersonId);
+        return "redirect:/people/getById";
+    }
+
     @PostMapping("/newBook")
     public String createNewBookContr(@ModelAttribute("book") Book book, BindingResult bindingResult){
         if (bindingResult.hasErrors())

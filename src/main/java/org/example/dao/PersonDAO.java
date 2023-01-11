@@ -25,7 +25,7 @@ public class PersonDAO {
                 .stream().findAny();
     }
     public Person getById(int personId) {
-        return jdbcTemplate.query("SELECT * FROM Person WHERE personId=?", new Object[]{personId}, new BeanPropertyRowMapper<>(Person.class))
+                return jdbcTemplate.query("SELECT * FROM Person WHERE personId=?", new Object[]{personId}, new BeanPropertyRowMapper<>(Person.class))
                 .stream().findAny().orElse(null);
     }
 
@@ -40,5 +40,8 @@ public class PersonDAO {
     public void delete(int personId) {
         jdbcTemplate.update("DELETE FROM Person WHERE personId=?", personId);
     }
+
+
+
 }
 
