@@ -6,43 +6,66 @@
 </head>
 <body>
 
-<p th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} + ', ' + ${book.getYear()}">VALUE</p>
+<p th:text="${bookAll.getTitle()} + ', ' + ${bookAll.getAuthor()} + ', '+ ${bookAll.getYear()}">VALUE</p>
 
-<!--<p th:text="Эта книга свободна. Кому назначить ее '?'"-->
-<!--   th:if="${#fields.isEmpty('book.personId')}">-->
-<!--<input type="submit" value="Назначить книгу"/>-->
-<!--</p>-->
 
-<!--<p th:text="Книга сейчас у':'${book.getPersonId(person.getFullName)}"-->
-<!--&lt;!&ndash;   th:if="${not #fields.isEmpty('book.personId')}">&ndash;&gt;-->
-<!--    <input type="submit" value="Освободить книгу"/>-->
-<!--</p>-->
+<div th:if="${not #lists.isEmpty(fullNameP)}"
+     th:text="'Книга сейчас у: ' + ${fullNameP}">
+</div>
+<form th:method="PATCH" th:action="@{/books/{bookId}/free(bookId=${bookAll.getBookId()})}">
+    <br/>
+    <input type="submit" value="Освободить книгу"/>
+</form>
 
-<!--<form th:method="PATCH" th:action="@{/people/getAll}">-->
-<!--&lt;!&ndash;    <label for="person">Выберите человека</label>&ndash;&gt;-->
-<!--    <select th:object="${person}" th:field="*{Person.personId}" id="person">-->
-<!--        <option th:each="person : ${peopleList}" th:value="${person.getPersonId()}"-->
-<!--                th:text="${person.getFullName()}">-->
-<!--        </option>-->
-<!--    </select>-->
-<!--</form>-->
 
-</hr>
 
-<form th:method="PATCH" th:action="@{/books/{bookId}/bookEdit(bookId=${book.getbookId()})}"></form>
-<br/>
+<!--Вторая часть-->
+
+<div th:unless="${#lists.isEmpty(fullNameP)}"
+     th:text="'Эта книга свободна. Кому назначить ее ?'">
+</div>
+
+<!--Выпадающий список-->
+<form th:method="PATCH" th:action="@{/books/{bookId}/addPersonId(bookId=${bookAll.getBookId()})}">
+<label for="allPerson">Выберите человека </label>
+<select th:object="${bookId}" th:field="*{personId}" id="allPerson">
+    <option th:each="el : ${allPerson}" th:value="${el.getPersonId()}" th:text="${el.getFullName()}">
+    </option>
+</select>
+    <input type="submit" value="Назначить книгу"/>
+</form>
+
+
+
+<!--Редактировать и удалить-->
+<hr>
+<form th:method="PATCH" th:action="@{/books/{bookId}/bookEdit(bookId=${bookAll.getBookId()})}"></form>
 <input type="submit" value="Редактировать"/>
 <br/>
-<br/>
-<form th:method="DELETE" th:action="@{/books/{bookId}(bookId=${book.getbookId()})}"></form>
+<form th:method="DELETE" th:action="@{/books/{bookId}(bookId=${bookAll.getBookId()})}"></form>
 <br/>
 <input type="submit" value="Удалить!"/>
+
 
 </body>
 </html>
 
 
-<!--    <a href="comments.html"-->
-<!--       th:href="@{/product/comments(prodId=${prod.id})}"-->
-<!--       th:if="${not #lists.isEmpty(prod.comments)}">view</a>-->
-<!--    th:unless="${#lists.isEmpty(prod.comments)}">view</a>-->
+
+
+<!--<div th:if="${#fields.isNullOrEmpty(fullNameP)}"-->
+
+<!--<div th:if="${#lists.isNullOrEmpty(fullNameP)}"></div>-->
+
+<!--<div th:if="${#strings.isNullOrEmpty(fullNameP)}"-->
+
+<!--&lt;!&ndash;<div th:if="${''.equals(fullNameP)}"&ndash;&gt;-->
+
+<!--&lt;!&ndash;<div th:if="${fullNameP.isEmpty()}"&ndash;&gt;-->
+
+<!--<div th:if="${(fullNameP.equals(null))}"-->
+
+<!--<div th:unless="${#lists == 0}"-->
+
+<!--<div th:unless="${ #lists.size == 1}"-->
+

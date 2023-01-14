@@ -16,7 +16,7 @@ public class BookDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List <Book> getAllBooks(){
+    public List<Book> getAllBooks(){
         return jdbcTemplate.query("SELECT * FROM Book", new BeanPropertyRowMapper<>(Book.class));
     }
 
@@ -35,15 +35,23 @@ public class BookDAO {
     }
 
     public Book getById(int bookId){
-        return jdbcTemplate.query("SELECT * FROM Book WHERE bookId=?", new Object[]{bookId}, new BeanPropertyRowMapper<>(Book.class))
+        return jdbcTemplate.query("SELECT * FROM Book WHERE bookId=" + bookId, new BeanPropertyRowMapper<>(Book.class))
                 .stream().findAny().orElse(null);
     }
 
     public List<Book> getByPersonId(int personId){
-        return (List<Book>) jdbcTemplate.query("SELECT * FROM Book WHERE personId=?", new Object[]{personId}, new BeanPropertyRowMapper<>(Book.class))
-                .stream().findAny().orElse(null);
+        return jdbcTemplate.query("SELECT * FROM Book WHERE personId="+ personId,
+                        new BeanPropertyRowMapper<>(Book.class));
+
     }
-    public void setBookForPerson(int bookId, Book book){
-        jdbcTemplate.update("UPDATE Book SET personId=? WHERE bookId=?", book.getPersonId(), bookId);
+    public void setBookForPerson(int bookId){
+        jdbcTemplate.update("UPDATE Book SET personId=? WHERE bookId=?", bookId);
+    }
+
+    public String getFullNameByBookId(int bookId){
+        return jdbcTemplate.queryForObject("SELECT Person.fullName FROM Person join Book ON (Book.personId = Person.personId) WHERE bookId=?", String.class, bookId);
+    }
+    public void deletePersonId(int bookId){
+        jdbcTemplate.update("UPDATE Book SET personId=null WHERE bookId=?", bookId);
     }
 }

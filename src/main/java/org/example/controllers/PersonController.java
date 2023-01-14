@@ -2,6 +2,7 @@ package org.example.controllers;
 
 import org.example.dao.BookDAO;
 import org.example.dao.PersonDAO;
+import org.example.models.Book;
 import org.example.models.Person;
 import org.example.util.PersonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,18 +28,18 @@ public class PersonController {
     }
 
     @GetMapping
-    public String getAllContr(Model model){
+    public String getAll(Model model){
 // получим всех людей из дао и передадим на отображение в представление
         List<Person> peopleList = personDAO.getAll();
-        model.addAttribute("people", peopleList);
+        model.addAttribute("peopleList", peopleList);
         return "people/getAll";
     }
-    @GetMapping("/{personId}")
-    public String getByIdContr(@PathVariable("personId") int personId, Model model){
-// получим одного человка по id из дао и передадим на отображение в представление
-        model.addAttribute("person", personDAO.getById(personId));
-        return  "people/getById";
-    }
+//    @GetMapping("/{personId}")
+//    public String getByIdContr(@PathVariable("personId") int personId, Model model){
+//// получим одного человка по id из дао и передадим на отображение в представление
+//        model.addAttribute("person", personDAO.getById(personId));
+//        return  "people/getById";
+//    }
     @GetMapping("/new")
     public String newPerson(Model model){
         model.addAttribute("person", new Person());
@@ -72,10 +73,12 @@ public class PersonController {
     }
 
 
-//    @GetMapping("/{personId}")
-//    public String getBookByPersonId(@PathVariable("personId") int personId, Model model){
-//        model.addAttribute("book", bookDAO.getByPersonId(personId));
-////        person.setBooks(allBooksByPersonId);
-//        return "/getById";
-//    }
+    @GetMapping("/{personId}")
+    public String getBookByPersonId(@PathVariable("personId") int personId, Model model){
+        Person person = personDAO.getById(personId);
+        List<Book> books = bookDAO.getByPersonId(personId);
+        person.setBooks(books);
+        model.addAttribute("man", person);
+        return "people/getById";
+    }
 }

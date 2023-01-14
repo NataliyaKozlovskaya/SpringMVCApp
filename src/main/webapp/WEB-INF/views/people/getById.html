@@ -6,31 +6,26 @@
 </head>
 <body>
 
-<p th:text="${person.getFullName()} + ', ' + ${person.getYearOfBirth()}">VALUE</p>
+<p th:text="${man.getFullName()} + ', ' + ${man.getYearOfBirth()}">VALUE</p>
+
 
 <div th:text="'Человек пока не взял ни одной книги'"
-     th:object="${allBooks}"
-     th:if="${#lists.isEmpty(allBookByPersonId)}">
-</div>
-
-<div th:each="book : ${allBooks}"
-     th:text="'Книги:' + {allBookByersonId}"
-     th:object="${allBooks}"
-     th:if="${#lists.isEmpty(allBookByPersonId)}">
+     th:if="${#lists.isEmpty(man.getBooks())}">
 </div>
 
 
+<div th:text="'Книги: '"
+     th:unless="${#lists.isEmpty(man.getBooks())}">
+</div>
+<div th:each="book : ${man.getBooks()}"
+     th:text="${book.getTitle()}">
+</div>
 
-<!--<div th:each="person : ${people}">-->
-<!--    <a th:href="@{/people/{personId}(personId=${person.getPersonId()})}"-->
-<!--       th:text = "${person.getFullName()} + ', ' + ${person.getYearOfBirth()}">user</a>-->
-<!--</div>-->
-<!--th:href="@{/people/withOutBook}"-->
 
 <hr>
-<a th:href="@{/people/{personId}/edit(personId=${person.getPersonId()})}"><input type="submit" value="Редактировать"/></a>
+<a th:href="@{/people/{personId}/edit(personId=${man.getPersonId()})}"><input type="submit" value="Редактировать"/></a>
 
-<form th:method="DELETE" th:action="@{/people/{personId}(personId=${person.getPersonId()})}">
+<form th:method="DELETE" th:action="@{/people/{personId}(personId=${man.getPersonId()})}">
     <br/>
     <input type="submit" value="Удалить!"/>
 
