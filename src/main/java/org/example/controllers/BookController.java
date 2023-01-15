@@ -26,16 +26,20 @@ public class BookController {
     public String getAllBooks(Model model){
         List<Book> booksList = bookDAO.getAllBooks();
         model.addAttribute("bookAll", booksList);
+        System.out.println(booksList);
         return "books/getAllBooks";
     }
     @GetMapping("/{bookId}")
-    public String getBookById(@PathVariable("bookId") int bookId, Model model,@ModelAttribute("bookId") Book book){
-        String fullNameByBookId = bookDAO.getFullNameByBookId(bookId);
-        List<Person> all = personDAO.getAll();
+    public String getBookById(@PathVariable("bookId") int bookId, Model model){
         Book book1 = bookDAO.getById(bookId);
+        if (book1.getPersonId() != 0){
+            String fullNameByBookId = bookDAO.getFullNameByBookId(bookId);
+            System.out.println(fullNameByBookId);
+            model.addAttribute("fullNameP", fullNameByBookId);
+        }
+        List<Person> all = personDAO.getAll();
 
-        model.addAttribute("fullNameP", fullNameByBookId);
-        model.addAttribute("bookAll", book1);
+        model.addAttribute("book", book1);
         model.addAttribute("allPerson", all);
         return "books/getBookById";
     }
@@ -46,9 +50,11 @@ public class BookController {
         return "books/getBookById";
     }
 
-    @PatchMapping("/free")
-    public String freeBook(@ModelAttribute("bookId") Book book, int bookId){
+    @PatchMapping("{bookId}/free")
+    public String freeBook(@PathVariable("bookId") int bookId){
+        System.out.println("qqqqqqqqqqqq");
         bookDAO.deletePersonId(bookId);
+
         return "redirect:/books/getBookById";
     }
 
