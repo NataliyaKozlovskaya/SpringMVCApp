@@ -15,31 +15,33 @@ import java.util.List;
 @Controller
 @RequestMapping("/books")
 public class BookController {
+
     private final BookDAO bookDAO;
     private final PersonDAO personDAO;
+
     @Autowired
     public BookController(BookDAO bookDAO, PersonDAO personDAO) {
         this.bookDAO = bookDAO;
         this.personDAO = personDAO;
     }
+
     @GetMapping
     public String getAllBooks(Model model){
-        List<Book> booksList = bookDAO.getAllBooks();
-        model.addAttribute("bookAll", booksList);
-        System.out.println(booksList);
+        List<Book> allBooks = bookDAO.getAllBooks();
+        model.addAttribute("allBooks", allBooks);
         return "books/getAllBooks";
     }
     @GetMapping("/{bookId}")
     public String getBookById(@PathVariable("bookId") int bookId, Model model){
-        Book book1 = bookDAO.getById(bookId);
-        if (book1.getPersonId() != 0){
+        Book book = bookDAO.getById(bookId);
+        if (book.getPersonId() != null){
             String fullNameByBookId = bookDAO.getFullNameByBookId(bookId);
             System.out.println(fullNameByBookId);
-            model.addAttribute("fullNameP", fullNameByBookId);
+            model.addAttribute("personFullName", fullNameByBookId);
         }
         List<Person> all = personDAO.getAll();
 
-        model.addAttribute("book", book1);
+        model.addAttribute("book", book);
         model.addAttribute("allPerson", all);
         return "books/getBookById";
     }
@@ -63,6 +65,7 @@ public class BookController {
         model.addAttribute("book", new Book());
         return "books/newBook";
     }
+
     @PostMapping
     public String createNewBook(@ModelAttribute("book") Book book,
                                 BindingResult bindingResult){

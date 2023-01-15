@@ -17,9 +17,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/people")
 public class PersonController {
+
     private final PersonDAO personDAO;
     private final BookDAO bookDAO;
     private final PersonValidator personValidator;
+
     @Autowired
     public PersonController(PersonDAO personDAO, BookDAO bookDAO, PersonValidator personValidator) {
         this.personDAO = personDAO;
@@ -34,17 +36,20 @@ public class PersonController {
         model.addAttribute("peopleList", peopleList);
         return "people/getAll";
     }
+
 //    @GetMapping("/{personId}")
 //    public String getByIdContr(@PathVariable("personId") int personId, Model model){
 //// получим одного человка по id из дао и передадим на отображение в представление
 //        model.addAttribute("person", personDAO.getById(personId));
 //        return  "people/getById";
 //    }
+
     @GetMapping("/new")
     public String newPerson(Model model){
         model.addAttribute("person", new Person());
         return "people/new";
     }
+
     @PostMapping
     public String create(@ModelAttribute ("person") @Valid Person person, BindingResult bindingResult){
         personValidator.validate(person, bindingResult);
@@ -53,11 +58,13 @@ public class PersonController {
         personDAO.save(person);
         return "redirect:/people";
     }
+
     @GetMapping("/{personId}/edit")
     public String edit(Model model, @PathVariable("personId") int personId){
         model.addAttribute("person", personDAO.getById(personId));
         return "people/edit";
     }
+
     @PatchMapping("/{personId}")
     public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult, @PathVariable("personId") int personId){
         personValidator.validate(person, bindingResult);
@@ -66,12 +73,12 @@ public class PersonController {
         personDAO.update(personId, person);
         return "redirect:/people";
     }
+
     @DeleteMapping("/{personId}")
     public String delete(@PathVariable("personId") int personId){
         personDAO.delete(personId);
         return "redirect:/people";
     }
-
 
     @GetMapping("/{personId}")
     public String getBookByPersonId(@PathVariable("personId") int personId, Model model){

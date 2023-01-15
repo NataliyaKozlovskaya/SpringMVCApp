@@ -9,8 +9,8 @@
 <p th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} + ', '+ ${book.getYear()}">VALUE</p>
 
 
-<div th:if="${fullNameP != null}"
-     th:text="'Книга сейчас у: ' + ${fullNameP}">
+<div th:if="${personFullName != null}"
+     th:text="'Книга сейчас у: ' + ${personFullName}">
 </div>
 <form th:method="PATCH" th:action="@{/books/{bookId}/free(bookId=${book.getBookId()})}">
     <br/>
@@ -53,17 +53,17 @@
 
 
 
-<!--<div th:if="${#fields.isNullOrEmpty(fullNameP)}"-->
+<!--<div th:if="${#fields.isNullOrEmpty(personFullName)}"-->
 
-<!--<div th:if="${#lists.isNullOrEmpty(fullNameP)}"></div>-->
+<!--<div th:if="${#lists.isNullOrEmpty(personFullName)}"></div>-->
 
-<!--<div th:if="${#strings.isNullOrEmpty(fullNameP)}"-->
+<!--<div th:if="${#strings.isNullOrEmpty(personFullName)}"-->
 
-<!--&lt;!&ndash;<div th:if="${''.equals(fullNameP)}"&ndash;&gt;-->
+<!--&lt;!&ndash;<div th:if="${''.equals(personFullName)}"&ndash;&gt;-->
 
-<!--&lt;!&ndash;<div th:if="${fullNameP.isEmpty()}"&ndash;&gt;-->
+<!--&lt;!&ndash;<div th:if="${personFullName.isEmpty()}"&ndash;&gt;-->
 
-<!--<div th:if="${(fullNameP.equals(null))}"-->
+<!--<div th:if="${(personFullName.equals(null))}"-->
 
 <!--<div th:unless="${#lists == 0}"-->
 
