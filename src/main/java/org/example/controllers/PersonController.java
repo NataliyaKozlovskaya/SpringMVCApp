@@ -60,13 +60,15 @@ public class PersonController {
     }
 
     @GetMapping("/{personId}/edit")
-    public String edit(Model model, @PathVariable("personId") int personId){
+    public String edit(Model model, @PathVariable("personId") Integer personId){
         model.addAttribute("person", personDAO.getById(personId));
         return "people/edit";
     }
 
     @PatchMapping("/{personId}")
-    public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult, @PathVariable("personId") int personId){
+    public String update(@ModelAttribute("person") @Valid Person person,
+                         BindingResult bindingResult,
+                         @PathVariable("personId") Integer personId){
         personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors())
             return "people/edit";
@@ -75,13 +77,13 @@ public class PersonController {
     }
 
     @DeleteMapping("/{personId}")
-    public String delete(@PathVariable("personId") int personId){
+    public String delete(@PathVariable("personId") Integer personId){
         personDAO.delete(personId);
         return "redirect:/people";
     }
 
     @GetMapping("/{personId}")
-    public String getBookByPersonId(@PathVariable("personId") int personId, Model model){
+    public String getBookByPersonId(@PathVariable("personId") Integer personId, Model model){
         Person person = personDAO.getById(personId);
         List<Book> books = bookDAO.getByPersonId(personId);
         person.setBooks(books);

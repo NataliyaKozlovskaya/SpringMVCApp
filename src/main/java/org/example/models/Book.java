@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class Book {
     private Integer bookId;
     private Integer personId;
@@ -20,4 +20,10 @@ public class Book {
     @Size(min=1, max=30, message="Author's name should be between 1 and 30 characters")
     private String author;
     private Integer year;
+
+    public Book(String title, String author, Integer year) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+    }
 }

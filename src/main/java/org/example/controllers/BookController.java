@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/books")
@@ -32,32 +33,45 @@ public class BookController {
         return "books/getAllBooks";
     }
     @GetMapping("/{bookId}")
-    public String getBookById(@PathVariable("bookId") int bookId, Model model){
-        Book book = bookDAO.getById(bookId);
-        if (book.getPersonId() != null){
-            String fullNameByBookId = bookDAO.getFullNameByBookId(bookId);
-            System.out.println(fullNameByBookId);
-            model.addAttribute("personFullName", fullNameByBookId);
+    public String getBookById(@PathVariable("bookId") Integer bookId, Model model, @ModelAttribute("person") Person person){
+        Book bookById = bookDAO.getById(bookId);
+        model.addAttribute("book", bookById);
+        Optional<Person> bookOwner = bookDAO.getFullNameByBookId(bookId);
+        if (bookOwner.isPresent()){
+            model.addAttribute("owner", bookOwner.get());
+        }else{
+            model.addAttribute("peopleList", personDAO.getAll());
         }
-        List<Person> all = personDAO.getAll();
-
-        model.addAttribute("book", book);
-        model.addAttribute("allPerson", all);
         return "books/getBookById";
+
+
+//        model.addAttribute("personFullName", fullNameByBookId);
+//        List<Person> all = personDAO.getAll();
+//        model.addAttribute("allPerson", all);
+
+//        if (book.getPersonId() != null){
+//            String fullNameByBookId = bookDAO.getFullNameByBookId(bookId);
+//            System.out.println(fullNameByBookId);
+//            model.addAttribute("personFullName", fullNameByBookId);
+//        }
+
+
     }
 
-    @PatchMapping("/addPersonId")
-    public String setBook(@ModelAttribute("personId") Book book, int personId){
-        bookDAO.setBookForPerson(personId);
-        return "books/getBookById";
+    @PatchMapping("/{bookId}/addPerson")
+    public String setBook(@ModelAttribute("personId") Integer personId, @PathVariable("bookId") Integer bookId){
+        System.out.println("addPerson");
+        bookDAO.setBookForPerson(personId, bookId);
+        System.out.println("updated");
+        return "redirect:/books/{bookId}";
     }
 
-    @PatchMapping("{bookId}/free")
-    public String freeBook(@PathVariable("bookId") int bookId){
-        System.out.println("qqqqqqqqqqqq");
+    @PatchMapping("/{bookId}/free")
+    public String freeBook(@PathVariable("bookId") Integer bookId){
+        System.out.println("free");
         bookDAO.deletePersonId(bookId);
 
-        return "redirect:/books/getBookById";
+        return "redirect:/books/{bookId}";
     }
 
     @GetMapping("/newBook")
@@ -76,16 +90,22 @@ public class BookController {
     }
 
     @PatchMapping("/{bookId}")
-    public String update(@ModelAttribute("book") Book book, BindingResult bindingResult, @PathVariable("bookId") int bookId){
+    public String update(@ModelAttribute("book") Book book,
+                         BindingResult bindingResult,
+                         @PathVariable("bookId") Integer bookId){
         if (bindingResult.hasErrors())
             return "books/bookEdit";
-        bookDAO.updateBook(bookId, book);
+        bookDAO.updateBook(book, bookId);
         return "redirect:/books";
     }
-
+    @GetMapping("/{bookId}/bookEdit")
+    public String edit(@PathVariable("bookId") Integer bookId, Model model){
+        model.addAttribute("book", bookDAO.getById(bookId));
+        return "books/bookEdit";
+    }
     @DeleteMapping("/{bookId}")
-    public String deleteBook(@PathVariable("bookId") int bookId){
-        bookDAO.deleteBook(bookId);
+    public String delete(@PathVariable("bookId") Integer bookId){
+        bookDAO.delete(bookId);
         return "redirect:/books";
     }
 }

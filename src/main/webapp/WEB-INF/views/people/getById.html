@@ -23,13 +23,14 @@
 
 
 <hr>
-<a th:href="@{/people/{personId}/edit(personId=${man.getPersonId()})}"><input type="submit" value="Редактировать"/></a>
+<a th:href="@{/people/{personId}/edit(personId=${man.getPersonId()})}">
+    <input type="submit" value="Редактировать"/></a>
 
 <form th:method="DELETE" th:action="@{/people/{personId}(personId=${man.getPersonId()})}">
     <br/>
     <input type="submit" value="Удалить!"/>
-
 </form>
+
 </body>
 </html>
 

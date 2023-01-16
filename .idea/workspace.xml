@@ -12,7 +12,15 @@
     <list default="true" id="d8a1df0c-1a51-4b00-9340-56bca63fee68" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/PersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/BookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/PersonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/PersonDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/bookEdit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/bookEdit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/getBookById.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/getBookById.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/newBook.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/newBook.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/getById.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/getById.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,9 +74,9 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.58965516&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;f7ebea660af1d09797dd25b20fb00916&quot;
   },
@@ -216,7 +224,9 @@
       <workItem from="1673545678500" duration="11997000" />
       <workItem from="1673625826102" duration="27093000" />
       <workItem from="1673683146860" duration="16675000" />
-      <workItem from="1673777983042" duration="5562000" />
+      <workItem from="1673777983042" duration="8603000" />
+      <workItem from="1673803149226" duration="7856000" />
+      <workItem from="1673853712269" duration="30237000" />
     </task>
     <task id="LOCAL-00001" summary="code with xml-configuration">
       <created>1670960859813</created>
@@ -309,7 +319,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673735273315</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="crud app: project1, 5">
+      <created>1673783804202</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1673783804202</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -367,6 +384,7 @@
     <MESSAGE value="crud app: project1, 2" />
     <MESSAGE value="crud app: project1, 3" />
     <MESSAGE value="crud app: project1, 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="crud app: project1, 4" />
+    <MESSAGE value="crud app: project1, 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="crud app: project1, 5" />
   </component>
 </project>
