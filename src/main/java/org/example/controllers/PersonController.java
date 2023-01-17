@@ -37,12 +37,6 @@ public class PersonController {
         return "people/getAll";
     }
 
-//    @GetMapping("/{personId}")
-//    public String getByIdContr(@PathVariable("personId") int personId, Model model){
-//// получим одного человка по id из дао и передадим на отображение в представление
-//        model.addAttribute("person", personDAO.getById(personId));
-//        return  "people/getById";
-//    }
 
     @GetMapping("/new")
     public String newPerson(Model model){
@@ -51,7 +45,8 @@ public class PersonController {
     }
 
     @PostMapping
-    public String create(@ModelAttribute ("person") @Valid Person person, BindingResult bindingResult){
+    public String create(@ModelAttribute ("person") @Valid Person person,
+                         BindingResult bindingResult){
         personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors())
             return "people/new";

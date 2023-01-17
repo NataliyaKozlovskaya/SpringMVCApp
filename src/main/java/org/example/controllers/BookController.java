@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,18 +45,6 @@ public class BookController {
         }
         return "books/getBookById";
 
-
-//        model.addAttribute("personFullName", fullNameByBookId);
-//        List<Person> all = personDAO.getAll();
-//        model.addAttribute("allPerson", all);
-
-//        if (book.getPersonId() != null){
-//            String fullNameByBookId = bookDAO.getFullNameByBookId(bookId);
-//            System.out.println(fullNameByBookId);
-//            model.addAttribute("personFullName", fullNameByBookId);
-//        }
-
-
     }
 
     @PatchMapping("/{bookId}/addPerson")
@@ -81,7 +70,7 @@ public class BookController {
     }
 
     @PostMapping
-    public String createNewBook(@ModelAttribute("book") Book book,
+    public String createNewBook(@ModelAttribute("book") @Valid Book book,
                                 BindingResult bindingResult){
         if (bindingResult.hasErrors())
             return "books/newBook";
@@ -90,7 +79,7 @@ public class BookController {
     }
 
     @PatchMapping("/{bookId}")
-    public String update(@ModelAttribute("book") Book book,
+    public String update(@ModelAttribute("book") @Valid Book book,
                          BindingResult bindingResult,
                          @PathVariable("bookId") Integer bookId){
         if (bindingResult.hasErrors())
@@ -98,11 +87,13 @@ public class BookController {
         bookDAO.updateBook(book, bookId);
         return "redirect:/books";
     }
+
     @GetMapping("/{bookId}/bookEdit")
     public String edit(@PathVariable("bookId") Integer bookId, Model model){
         model.addAttribute("book", bookDAO.getById(bookId));
         return "books/bookEdit";
     }
+
     @DeleteMapping("/{bookId}")
     public String delete(@PathVariable("bookId") Integer bookId){
         bookDAO.delete(bookId);

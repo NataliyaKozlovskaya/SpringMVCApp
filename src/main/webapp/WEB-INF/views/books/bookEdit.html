@@ -6,7 +6,8 @@
 </head>
 <body>
 
-<form th:method="PATCH" th:action="@{/books/{bookId}(bookId=${book.getBookId()})}" th:object="${book}">
+<form th:method="PATCH" th:action="@{/books/{bookId}(bookId=${book.getBookId()})}"
+      th:object="${book}">
     <label for="title">Введите название книги: </label>
     <input type="text" th:field="*{title}" id="title"/>
     <div style="color:red" th:if="${#fields.hasErrors('title')}"
@@ -21,6 +22,8 @@
     <br/>
     <label for="year">Введите год: </label>
     <input type="text" th:field="*{year}" id="year"/>
+    <div style="color:red" th:if="${#fields.hasErrors('year')}"
+         th:errors="*{year}">year error</div>
 
     <input type="submit" value="Редактировать!"/>
 </form>
