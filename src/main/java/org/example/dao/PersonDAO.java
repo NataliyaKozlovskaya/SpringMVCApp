@@ -1,43 +1,40 @@
 package org.example.dao;
 
 import org.example.models.Person;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.beans.BeanProperty;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class PersonDAO {
-    private final JdbcTemplate jdbcTemplate;
+    private final SessionFactory sessionFactory;
     @Autowired
-    public PersonDAO(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public PersonDAO(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
-
+    @Transactional(readOnly = true)
     public List<Person> index() {
-       return jdbcTemplate.query("SELECT * FROM Person", new BeanPropertyRowMapper<>(Person.class));
+        Session session = sessionFactory.getCurrentSession();
+        List<Person> people = session.createQuery("SELECT p FROM Person p", Person.class).getResultList();
+        return people;
     }
 
     public Person show(int id) {
-        return jdbcTemplate.query("SELECT * FROM Person WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
-                .stream().findAny().orElse(null);
+       return null;
     }
 
     public void save(Person person){
-        jdbcTemplate.update("INSERT INTO Person VALUES(?,?,?,?)", person.getId(), person.getName(), person.getEmail(), person.getAge());
     }
 
     public void update(int id, Person updatedPerson) {
-       jdbcTemplate.update("UPDATE Person SET name=?, email=?, age=? WHERE id=?", updatedPerson.getName(), updatedPerson.getEmail(), updatedPerson.getAge(), id);
-    }
+          }
     public void delete(int id){
-        jdbcTemplate.update("DELETE FROM Person WHERE id=?",id);
+
     }
 }
 
