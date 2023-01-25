@@ -1,5 +1,6 @@
 package org.example.servicies;
 
+import org.example.models.Mood;
 import org.example.models.Person;
 import org.example.repositories.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ public class PeopleService {
     @Transactional
     public void save(Person person){
         person.setCreateAt(new Date());
+        person.setMood(Mood.CALM);
         peopleRepository.save(person);
     }
 

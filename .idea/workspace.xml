@@ -10,15 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8a1df0c-1a51-4b00-9340-56bca63fee68" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/repositories/ItemsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/servicies/ItemsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Mood.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/PeopleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/PeopleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repositories/PeopleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repositories/PeopleRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servicies/PeopleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servicies/PeopleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +26,7 @@
         <option value="HTML File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -220,7 +216,7 @@
       <workItem from="1674582454814" duration="2328000" />
       <workItem from="1674586191754" duration="6381000" />
       <workItem from="1674593702336" duration="757000" />
-      <workItem from="1674641041439" duration="11453000" />
+      <workItem from="1674641041439" duration="13327000" />
     </task>
     <task id="LOCAL-00001" summary="code with xml-configuration">
       <created>1670960859813</created>
@@ -327,7 +323,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674594435882</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="crud app + hibernate + spring DATA JPA: @Temporal, @DateTimeFormat">
+      <created>1674675500024</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1674675500024</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -375,6 +378,7 @@
     <MESSAGE value="crud app+hibernate: configuration" />
     <MESSAGE value="crud app+hibernate: session in DAO" />
     <MESSAGE value="crud app + hibernate + spring DATA JPA (@servis,@repositori" />
-    <option name="LAST_COMMIT_MESSAGE" value="crud app + hibernate + spring DATA JPA (@servis,@repositori" />
+    <MESSAGE value="crud app + hibernate + spring DATA JPA: @Temporal, @DateTimeFormat" />
+    <option name="LAST_COMMIT_MESSAGE" value="crud app + hibernate + spring DATA JPA: @Temporal, @DateTimeFormat" />
   </component>
 </project>
