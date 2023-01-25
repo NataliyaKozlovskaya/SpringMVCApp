@@ -10,10 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8a1df0c-1a51-4b00-9340-56bca63fee68" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Mood.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/PersonDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/PeopleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/PeopleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servicies/PeopleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servicies/PeopleService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +26,8 @@
       <list>
         <option value="HTML File" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -216,7 +217,7 @@
       <workItem from="1674582454814" duration="2328000" />
       <workItem from="1674586191754" duration="6381000" />
       <workItem from="1674593702336" duration="757000" />
-      <workItem from="1674641041439" duration="13327000" />
+      <workItem from="1674641041439" duration="17542000" />
     </task>
     <task id="LOCAL-00001" summary="code with xml-configuration">
       <created>1670960859813</created>
@@ -330,7 +331,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674675500024</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="crud app + hibernate + spring DATA JPA: Enum">
+      <created>1674677404318</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1674677404318</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -379,6 +387,7 @@
     <MESSAGE value="crud app+hibernate: session in DAO" />
     <MESSAGE value="crud app + hibernate + spring DATA JPA (@servis,@repositori" />
     <MESSAGE value="crud app + hibernate + spring DATA JPA: @Temporal, @DateTimeFormat" />
-    <option name="LAST_COMMIT_MESSAGE" value="crud app + hibernate + spring DATA JPA: @Temporal, @DateTimeFormat" />
+    <MESSAGE value="crud app + hibernate + spring DATA JPA: Enum" />
+    <option name="LAST_COMMIT_MESSAGE" value="crud app + hibernate + spring DATA JPA: Enum" />
   </component>
 </project>

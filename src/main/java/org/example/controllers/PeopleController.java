@@ -1,5 +1,6 @@
 package org.example.controllers;
 
+import org.example.dao.PersonDAO;
 import org.example.models.Person;
 import org.example.servicies.ItemsService;
 import org.example.servicies.PeopleService;
@@ -15,19 +16,20 @@ import javax.validation.Valid;
 public class PeopleController {
     private final PeopleService peopleService;
     private final ItemsService itemsService;
-
-    public PeopleController(PeopleService peopleService, ItemsService itemsService) {
+    private  final PersonDAO personDAO;
+    public PeopleController(PeopleService peopleService, ItemsService itemsService, PersonDAO personDAO) {
         this.peopleService = peopleService;
         this.itemsService = itemsService;
+        this.personDAO = personDAO;
     }
 
     @GetMapping
     public String index(Model model){
         model.addAttribute("people", peopleService.findAll());
-        itemsService.findByItemName("book");
-        itemsService.findByOwner(peopleService.findAll().get(0));
-
-        peopleService.test();
+//        itemsService.findByItemName("book");
+//        itemsService.findByOwner(peopleService.findAll().get(0));
+//        peopleService.test();
+        personDAO.testNPlus1();
         return "people/index";
     }
     @GetMapping("/{id}")
