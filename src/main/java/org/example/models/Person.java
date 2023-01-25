@@ -1,10 +1,15 @@
 package org.example.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name="Person")
 public class Person {
@@ -26,6 +31,18 @@ public class Person {
     @Column(name="email")
     private  String email;
 
+    @Column(name="date_of_birth")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date dateOfBirth;
+
+    @Column(name="created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createAt;
+
+
+    @OneToMany(mappedBy = "owner")
+    private List<Item> items;
     public Person() {
     }
 
@@ -67,12 +84,38 @@ public class Person {
         this.age = age;
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Date getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", email='" + email + '\'' +
+                ", items=" + items +
                 '}';
     }
 }

@@ -1,6 +1,7 @@
 package org.example.controllers;
 
 import org.example.models.Person;
+import org.example.servicies.ItemsService;
 import org.example.servicies.PeopleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,14 +14,20 @@ import javax.validation.Valid;
 @RequestMapping("/people")
 public class PeopleController {
     private final PeopleService peopleService;
+    private final ItemsService itemsService;
 
-    public PeopleController(PeopleService peopleService) {
+    public PeopleController(PeopleService peopleService, ItemsService itemsService) {
         this.peopleService = peopleService;
+        this.itemsService = itemsService;
     }
 
     @GetMapping
     public String index(Model model){
         model.addAttribute("people", peopleService.findAll());
+        itemsService.findByItemName("book");
+        itemsService.findByOwner(peopleService.findAll().get(0));
+
+        peopleService.test();
         return "people/index";
     }
     @GetMapping("/{id}")

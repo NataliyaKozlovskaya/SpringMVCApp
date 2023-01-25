@@ -9,14 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8a1df0c-1a51-4b00-9340-56bca63fee68" name="Changes" comment="crud app+hibernate: session in DAO">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/repositories/PeopleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/servicies/PeopleService.java" afterDir="false" />
+    <list default="true" id="d8a1df0c-1a51-4b00-9340-56bca63fee68" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/repositories/ItemsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/servicies/ItemsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/config/SpringConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/config/SpringConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/PeopleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/PeopleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/PersonDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repositories/PeopleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repositories/PeopleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servicies/PeopleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servicies/PeopleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +219,8 @@
       <workItem from="1672172421489" duration="2335000" />
       <workItem from="1674582454814" duration="2328000" />
       <workItem from="1674586191754" duration="6381000" />
-      <workItem from="1674593702336" duration="649000" />
+      <workItem from="1674593702336" duration="757000" />
+      <workItem from="1674641041439" duration="11453000" />
     </task>
     <task id="LOCAL-00001" summary="code with xml-configuration">
       <created>1670960859813</created>
@@ -317,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674507666172</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="crud app + hibernate + spring DATA JPA (@servis,@repositori">
+      <created>1674594435882</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1674594435882</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,6 +374,7 @@
     <MESSAGE value="crud app: first_db, jdbcTemplate" />
     <MESSAGE value="crud app+hibernate: configuration" />
     <MESSAGE value="crud app+hibernate: session in DAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="crud app+hibernate: session in DAO" />
+    <MESSAGE value="crud app + hibernate + spring DATA JPA (@servis,@repositori" />
+    <option name="LAST_COMMIT_MESSAGE" value="crud app + hibernate + spring DATA JPA (@servis,@repositori" />
   </component>
 </project>
