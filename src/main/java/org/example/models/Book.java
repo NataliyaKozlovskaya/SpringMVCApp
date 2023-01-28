@@ -2,6 +2,7 @@ package org.example.models;
 
 import lombok.*;
 
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -9,11 +10,17 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name="Book")
 public class Book {
-    private Integer bookId;
-//    private Integer personId;
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="id")
+    private Integer id;
+
     @NotEmpty(message="Title should not be empty")
     @Size(min=1, max=50, message="Title should be between 1 and 50 characters")
     private String title;
@@ -24,6 +31,10 @@ public class Book {
 
     @Min(value = 1900, message = "Age should be bigger than 1900")
     private Integer year;
+
+    @ManyToOne
+    @JoinColumn(name="personId", referencedColumnName = "id")
+    private Person person;
 
 
 }

@@ -13,8 +13,8 @@
          th:errors="*{fullName}">fullName error</div>
     <br/>
     <br/>
-    <label for="yearOfBirth">Введите год рождения: </label>
-    <input type="text" th:field="*{yearOfBirth}" id="yearOfBirth"/>
+    <label for="year_of_birth">Введите дату рождения (дд/мм/гггг): </label>
+    <input type="text" th:field="*{yearOfBirth}" id="year_of_birth"/>
     <div style="color:red" th:if="${#fields.hasErrors('yearOfBirth')}"
                            th:errors="*{yearOfBirth}">yearOfBirth error</div>
     <br/>

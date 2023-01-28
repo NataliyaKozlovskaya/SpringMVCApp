@@ -23,37 +23,13 @@
 
 
 <hr>
-<a th:href="@{/people/{personId}/edit(personId=${man.getPersonId()})}">
+<a th:href="@{/people/{id}/edit(id=${man.getId()})}">
     <input type="submit" value="Редактировать"/></a>
 
-<form th:method="DELETE" th:action="@{/people/{personId}(personId=${man.getPersonId()})}">
+<form th:method="DELETE" th:action="@{/people/{id}(id=${man.getId()})}">
     <br/>
     <input type="submit" value="Удалить!"/>
 </form>
 
 </body>
 </html>
-
-
-<!--<div th:unless="${user.isAdmin}">-->
-<!--    Non-admin block-->
-<!--</div>-->
-<!--<form th:method="GET" th:action="@{/books/{personId}(personId=${book.getPersonId()})}" th:object="${book}">-->
-<!--<a th:text="Человек пока не взял ни одной книги"-->
-<!--        th:if="${#fields.isEmpty(${book.getPersonId()})}">view</a>-->
-
-<!--</form>-->
-<!--<div th:each="book : ${books}"></div>-->
-<!--<a th:text="Книги':' ${book.getTitle()} + ', ' +  ${book.getAuthor()} + ', ' +  ${book.getYear()}"></a>-->
-<!--&lt;!&ndash;   th:if="${not #fields.isEmpty(book.getPersonId)}">view</a>&ndash;&gt;-->
-
-
-
-<!--    <a href="comments.html"-->
-<!--       th:href="@{/product/comments(prodId=${prod.id})}"-->
-<!--       th:if="${not #lists.isEmpty(prod.comments)}">view</a>-->
-
-<!--    th:unless="${#lists.isEmpty(prod.comments)}">view</a>-->
-
-<!--<a th:href="@{/people/{personId}/withOutBook(personId=${person.getPersonId()})}"></a>-->
-    <!--       th:if="${not #lists.isEmpty(prod.comments)}">view</a>-->
