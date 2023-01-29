@@ -16,6 +16,7 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 @Service
 public class BooksService {
+
     private final BooksRepository booksRepository;
     private final PeopleRepository peopleRepository;
 
@@ -71,19 +72,12 @@ public class BooksService {
 
 
     //ПАГИНАЦИЯ
-    //    public Page<Book> findAll(Pageable pageable) {
-//        return null;
     public Page<Book> findPage(Integer page, Integer bookPerPage){
         Pageable pageable = PageRequest.of(page, bookPerPage);
         return booksRepository.findAll(pageable);
     }
 
-
-    // ПОИСК ВСЕХ НАЗВАНИЙ КНИГ
-//   /
-
     //СЧИТАЕМ КОЛ-ВО СТРАНИЦ
-
     public long findCount(){
         return booksRepository.count();
     }

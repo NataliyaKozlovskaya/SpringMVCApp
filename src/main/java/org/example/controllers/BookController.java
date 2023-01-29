@@ -5,6 +5,7 @@ import org.example.models.Person;
 import org.example.services.BooksService;
 import org.example.services.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/books")
 public class BookController {
+
     private final BooksService booksService;
     private final PeopleService peopleService;
 
@@ -25,35 +27,24 @@ public class BookController {
         this.peopleService = peopleService;
     }
 
-    //    ПАГИНАЦИЯ
-//    @GetMapping("{page}&{bookPerPage}")
-//    public String getAllBooks(@RequestParam("page") Integer page, @RequestParam("bookPerPage") Integer bookPerPage,
-//                              Model model) {
-////        page=1;
-////        Integer defaultSize = 2;
-////        long pageCount = booksService.findCount()/defaultSize;
-//        long pageCount = booksService.findCount() / bookPerPage;
-//        model.addAttribute("pageCount", pageCount);
-//        model.addAttribute("page", booksService.findPage(page, bookPerPage));
-//        booksService.findPage();
-//        return "redirect:/books/getAllBooks";
-//    }
 //ПАГИНАЦИЯ
     @GetMapping
     public String getAllBooks(@RequestParam(value="page", required = false) Integer page,
                               @RequestParam(value="bookPerPage", required = false) Integer bookPerPage,
                               Model model) {
         if(page==null){
-            page=1;
+            page=0;
         }
         if(bookPerPage==null){
-            bookPerPage= 1;
+            bookPerPage= 2;
         }
         long countOfBooks = booksService.findCount();
-        long pageCount = countOfBooks / bookPerPage;
+        Page<Book> books = booksService.findPage(page, bookPerPage);
+        long pageCount = getPageCount(countOfBooks, bookPerPage);
         model.addAttribute("pageCount", pageCount);
-        model.addAttribute("page", booksService.findPage(page, bookPerPage));
-        return "redirect:/books/getAllBooks";
+        model.addAttribute("books", books);
+     //   model.addAttribute("bookPerPage", bookPerPage);
+        return "books/getAllBooks";
     }
 
 
@@ -120,19 +111,13 @@ public class BookController {
         return "redirect:/books";
     }
 
-
-    // ПОИСК КНИГИ
-//    @GetMapping("search")
-//    public String search(@RequestParam{"title"} String title, Model model){
-//        List<String> allTitle = booksService.findAllTitle();
-//        //как сравнить??
-//        List<String> books = allTitle.findByFirstnameLike(title);
-//        if (books.isEmpty()){
-//            model.addAttribute("allBooks", booksService.findAll());
-//         }else {
-//            model.addAttribute("books", books);
-//        }
-//
-//    }
-
+    public long getPageCount(long countOfBooks, Integer bookPerPage) {
+        long pageCount;
+        if (countOfBooks % bookPerPage == 0) {
+            pageCount = countOfBooks / bookPerPage;
+        } else {
+            pageCount = countOfBooks / bookPerPage + 1;
+        }
+        return pageCount;
+    }
 }

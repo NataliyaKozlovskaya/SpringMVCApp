@@ -6,43 +6,24 @@
     </head>
     <body>
 
-    <div th:each="book : ${page}"
-         th:text = "${book.getTitle()} + ', ' + ${book.getAuthor()}">
-    </div>
+        <div th:each="book : ${books}"
+            th:text = "${book.getTitle()} + ', ' + ${book.getAuthor()}">
+        </div>
 
-<!--    -->
-<!--    <form th:method="GET" th:action="@{/books}">-->
-<!--                <label for="bookPerPage">Выберите страницу </label>-->
-<!--                <select th:object="${bookPerPage}" th:field="*{bookPerPage}" id="bookPerPage">-->
-<!--                    <option th:each="el : ${l}" th:value="${bookPerPage}" th:text="${el}">-->
-<!--                    </option>-->
-<!--                </select>-->
-<!--    </form>-->
-<!--&lt;!&ndash;    <form th:method="GET" th:action="@{/books/{id}/bookEdit(id=${book.getId()})}">&ndash;&gt;-->
-<!--&lt;!&ndash;        <br/>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input type="submit" value="Редактировать!"/>&ndash;&gt;-->
-<!--&lt;!&ndash;    </form>&ndash;&gt;-->
+        <div th:each="i : ${#numbers.sequence(0, pageCount - 1)}" class="red-star">
+            <a th:href="@{/books(page=${i})}"
+               th:text = "${i}">
+            </a>
+        </div>
 
-<!--    <form th:method="GET" th:action="@{/books}?{page}">-->
-<!--        <label for="page">Выберите количество книг на стрвнице </label>-->
-<!--        <select th:object="${page}" th:field="*{page}" id="page">-->
-<!--            <option th:each="el : ${l}" th:value="${page}" th:text="${el}">-->
-<!--            </option>-->
-<!--        </select>-->
-<!--    </form>-->
-
-<!--    <div th:if="page"-->
-<!--         th:each="page : ${pageCount}">-->
-<!--        <a th:href="@{/books/{id}(id=${book.getId()})}"-->
-<!--           th:text = "${book.getTitle()} + ', ' +  ${book.getAuthor()} + ', ' +  ${book.getYear()}"></a>-->
-<!--    </div>-->
-
-<!--        <div th:if="pagination"-->
-<!--&lt;!&ndash;             th:each="book : ${pagination}">&ndash;&gt;-->
-<!--&lt;!&ndash;            <a th:href="@{/books/{id}(id=${book.getId()})}"&ndash;&gt;-->
-<!--&lt;!&ndash;               th:text = "${book.getTitle()} + ', ' +  ${book.getAuthor()} + ', ' +  ${book.getYear()}"></a>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-
+        <form th:method="GET" th:action="@{/books}">
+            <label >Выберите страницу</label>
+            <select th:object="${bookPerPage}">
+                <option th:value="1" th:text="1">1</option>
+                <option th:value="2" th:text="2">2</option>
+                <option th:value="5" th:text="5">5</option>
+            </select>
+        </form>
 
         <br/>
         <hr/>

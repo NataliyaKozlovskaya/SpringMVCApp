@@ -17,9 +17,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/people")
 public class PersonController {
+
     private final PeopleService peopleService;
     private final BooksService booksService;
     private final PersonValidator personValidator;
+
     @Autowired
     public PersonController(PeopleService peopleService, BooksService booksService, PersonValidator personValidator) {
         this.peopleService = peopleService;
