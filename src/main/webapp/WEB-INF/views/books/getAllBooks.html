@@ -6,12 +6,48 @@
     </head>
     <body>
 
-        <div th:each="book : ${allBooks}">
-            <a th:href="@{/books/{id}(id=${book.getId()})}"
-               th:text = "${book.getTitle()} + ', ' +  ${book.getAuthor()} + ', ' +  ${book.getYear()}"></a>
-        </div>
+    <div th:each="book : ${page}"
+         th:text = "${book.getTitle()} + ', ' + ${book.getAuthor()}">
+    </div>
+
+<!--    -->
+<!--    <form th:method="GET" th:action="@{/books}">-->
+<!--                <label for="bookPerPage">Выберите страницу </label>-->
+<!--                <select th:object="${bookPerPage}" th:field="*{bookPerPage}" id="bookPerPage">-->
+<!--                    <option th:each="el : ${l}" th:value="${bookPerPage}" th:text="${el}">-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--    </form>-->
+<!--&lt;!&ndash;    <form th:method="GET" th:action="@{/books/{id}/bookEdit(id=${book.getId()})}">&ndash;&gt;-->
+<!--&lt;!&ndash;        <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="submit" value="Редактировать!"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    </form>&ndash;&gt;-->
+
+<!--    <form th:method="GET" th:action="@{/books}?{page}">-->
+<!--        <label for="page">Выберите количество книг на стрвнице </label>-->
+<!--        <select th:object="${page}" th:field="*{page}" id="page">-->
+<!--            <option th:each="el : ${l}" th:value="${page}" th:text="${el}">-->
+<!--            </option>-->
+<!--        </select>-->
+<!--    </form>-->
+
+<!--    <div th:if="page"-->
+<!--         th:each="page : ${pageCount}">-->
+<!--        <a th:href="@{/books/{id}(id=${book.getId()})}"-->
+<!--           th:text = "${book.getTitle()} + ', ' +  ${book.getAuthor()} + ', ' +  ${book.getYear()}"></a>-->
+<!--    </div>-->
+
+<!--        <div th:if="pagination"-->
+<!--&lt;!&ndash;             th:each="book : ${pagination}">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a th:href="@{/books/{id}(id=${book.getId()})}"&ndash;&gt;-->
+<!--&lt;!&ndash;               th:text = "${book.getTitle()} + ', ' +  ${book.getAuthor()} + ', ' +  ${book.getYear()}"></a>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+
+
         <br/>
         <hr/>
         <a href="/books/newBook">Добавить книгу</a>
+        <br/>
+        <a href="/books/search">Искать книгу</a>
     </body>
 </html>

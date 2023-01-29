@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск книги</title>
+</head>
+<body>
+
+
+<form th:method="GET" th:action="@{/books}/search/{title}" th:object="${book}">
+    <br/>
+    <label for="title">Введите поисковой запрос: </label>
+    <input type="text" th:field="*{title}" id="title"/>
+
+    <br/>
+
+</form>
+</body>
+</html>
