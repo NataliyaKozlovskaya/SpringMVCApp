@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -29,24 +30,67 @@ public class BookController {
 
 //ПАГИНАЦИЯ
     @GetMapping
-    public String getAllBooks(@RequestParam(value="page", required = false) Integer page,
-                              @RequestParam(value="bookPerPage", required = false) Integer bookPerPage,
-                              Model model) {
-        if(page==null){
-            page=0;
-        }
-        if(bookPerPage==null){
-            bookPerPage= 2;
-        }
+    public String getAllBooks(Model model) {
+
+        Integer page=0;
+        Integer bookPerPage=2;
+
         long countOfBooks = booksService.findCount();
+
         Page<Book> books = booksService.findPage(page, bookPerPage);
+        model.addAttribute("books", books);
+
         long pageCount = getPageCount(countOfBooks, bookPerPage);
         model.addAttribute("pageCount", pageCount);
+
+        model.addAttribute("bookPerPage", bookPerPage);
+        model.addAttribute("page", page);
+        return "books/getAllBooks";
+    }
+    @GetMapping("/page={page}/bookPerPage={bookPerPage}")
+    public String paginationPage(@RequestParam("page") Integer page,
+                                 @RequestParam("bookPerPage") Integer bookPerPage,
+                                 Model model){
+
+        long countOfBooks = booksService.findCount();
+        Page<Book> books = booksService.findPage(page, bookPerPage);
         model.addAttribute("books", books);
-     //   model.addAttribute("bookPerPage", bookPerPage);
+
+        long pageCount = getPageCount(countOfBooks, bookPerPage);
+        model.addAttribute("pageCount", pageCount);
         return "books/getAllBooks";
     }
 
+
+//@Controller
+//public class BookController {
+//
+//    @Autowired
+//    private BookService bookService;
+//
+//    @RequestMapping(value = "/listBooks", method = RequestMethod.GET)
+//    public String listBooks(
+//      Model model,
+//      @RequestParam("page") Optional<Integer> page,
+//      @RequestParam("size") Optional<Integer> size) {
+//        int currentPage = page.orElse(1);
+//        int pageSize = size.orElse(5);
+//
+//        Page<Book> bookPage = bookService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+//
+//        model.addAttribute("bookPage", bookPage);
+//
+//        int totalPages = bookPage.getTotalPages();
+//        if (totalPages > 0) {
+//            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+//                .boxed()
+//                .collect(Collectors.toList());
+//            model.addAttribute("pageNumbers", pageNumbers);
+//        }
+//
+//        return "listBooks.html";
+//    }
+//}
 
     @GetMapping("/{id}")
     public String getBookById(@PathVariable("id") Integer id, Model model, @ModelAttribute("person") Person person) {
@@ -64,8 +108,8 @@ public class BookController {
 
 
     @PatchMapping("/{id}/addPerson")
-    public String setBookForPerson(@PathVariable("id") Integer id, @ModelAttribute("personId") Integer personId) {
-        booksService.setBookForPerson(id, personId);
+    public String setBookForPerson(@PathVariable("id") Integer id, @ModelAttribute("person") Person person) {
+        booksService.setBookForPerson(id, person);
         return "redirect:/books/{id}";
     }
 
@@ -120,4 +164,21 @@ public class BookController {
         }
         return pageCount;
     }
+
+    @GetMapping("/search")
+    public String searchBook(@RequestParam("str") String str,  Model model) {
+        String searchBook = booksService.findByTitleLike(str);
+//        String book = booksService.findByTitle(title);
+//        model.addAttribute("book", book);
+//        Optional<Person> owner = Optional.ofNullable(book.getPerson());
+        List<Book> bookList = booksService.findAll();
+        model.addAttribute("bookList", bookList);
+        if (!searchBook.isEmpty()){
+            model.addAttribute("searchBook", searchBook);
+//            model.addAttribute("owner", owner);
+        }
+        return "books/search";
+    }
+
+
 }

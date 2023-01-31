@@ -51,9 +51,9 @@ public class BooksService {
     }
 
     @Transactional
-    public void setBookForPerson(Integer id, Integer personId) {
+    public void setBookForPerson(Integer id, Person person) {
         Book book = booksRepository.getOne(id);
-        Person person = peopleRepository.getOne(personId);
+//        Person person = peopleRepository.getOne(person);
         book.setPerson(person);
         booksRepository.save(book);
     }
@@ -82,4 +82,23 @@ public class BooksService {
         return booksRepository.count();
     }
 
+    public long getPageCount(long countOfBooks, Integer bookPerPage) {
+        long pageCount;
+        if (countOfBooks % bookPerPage == 0) {
+            pageCount = countOfBooks / bookPerPage;
+        } else {
+            pageCount = countOfBooks / bookPerPage + 1;
+        }
+        return pageCount;
+    }
+
+    public String findByTitleLike(String str){
+        return booksRepository.findByTitleLike(str);
+    }
+    public List<Book> findAll(){
+        return booksRepository.findAll();
+    }
+    public String findByTitle(String title){
+        return booksRepository.findByTitle(title);
+    }
 }

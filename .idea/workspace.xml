@@ -10,12 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8a1df0c-1a51-4b00-9340-56bca63fee68" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/search.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repositories/BooksRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repositories/BooksRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/services/BooksService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/services/BooksService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/getAllBooks.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/getAllBooks.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/getBookById.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/getBookById.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/search.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +39,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -233,7 +235,9 @@
       <workItem from="1673975727342" duration="4125000" />
       <workItem from="1674918873110" duration="21205000" />
       <workItem from="1674983125948" duration="9563000" />
-      <workItem from="1675010458130" duration="9150000" />
+      <workItem from="1675010458130" duration="14470000" />
+      <workItem from="1675069164902" duration="19478000" />
+      <workItem from="1675154409033" duration="9291000" />
     </task>
     <task id="LOCAL-00001" summary="code with xml-configuration">
       <created>1670960859813</created>
@@ -347,7 +351,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674942269408</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="crud app: project1 (hibernate, Spring JPA)??">
+      <created>1675021419655</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1675021419655</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,7 +375,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/project1" />
+                        <option value="HEAD" />
                       </list>
                     </value>
                   </entry>
@@ -382,12 +393,12 @@
             <list>
               <RecentGroup>
                 <option name="FILTER_VALUES">
-                  <option value="origin/project1" />
+                  <option value="HEAD" />
                 </option>
               </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
-                  <option value="HEAD" />
+                  <option value="origin/project1" />
                 </option>
               </RecentGroup>
             </list>
@@ -413,6 +424,7 @@
     <MESSAGE value="crud app: project1, 5" />
     <MESSAGE value="crud app: project1, ready" />
     <MESSAGE value="crud app: project1 (hibernate, Spring JPA)" />
-    <option name="LAST_COMMIT_MESSAGE" value="crud app: project1 (hibernate, Spring JPA)" />
+    <MESSAGE value="crud app: project1 (hibernate, Spring JPA)??" />
+    <option name="LAST_COMMIT_MESSAGE" value="crud app: project1 (hibernate, Spring JPA)??" />
   </component>
 </project>

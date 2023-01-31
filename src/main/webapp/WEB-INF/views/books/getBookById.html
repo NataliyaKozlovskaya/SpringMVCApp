@@ -6,6 +6,11 @@
 </head>
 <body>
 
+<!--<label for="title">Введите поисковой запрос: </label>-->
+<!--<input type="text" th:field="*{book}" id="title"/>-->
+<!--<input type="submit" value="Искать книгу"/>-->
+
+
 <p th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} + ', '+ ${book.getYear()}">VALUE</p>
 
 <div th:if="${owner}">
@@ -24,13 +29,15 @@
 <!--Выпадающий список-->
     <form th:method="PATCH" th:action="@{/books/{bookId}/addPerson(bookId=${book.getId()})}">
         <label for="peopleList">Выберите человека </label>
-        <select th:object="${person}" th:field="*{personId}" id="peopleList">
+        <select th:object="${person}" th:field="*{id}" id="peopleList">
             <option th:each="el : ${peopleList}" th:value="${el.getId()}" th:text="${el.getFullName()}">
             </option>
         </select>
         <input type="submit" value="Назначить книгу"/>
     </form>
 </div>
+
+
 <!--Редактировать и удалить-->
 <!--<hr>-->
 

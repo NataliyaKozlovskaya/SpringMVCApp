@@ -6,23 +6,25 @@
     </head>
     <body>
 
-        <div th:each="book : ${books}"
-            th:text = "${book.getTitle()} + ', ' + ${book.getAuthor()}">
+        <div th:each="book : ${books}">
+            <a th:href="@{/books/{id}(id=${book.getId()})}"
+               th:text = "${book.getTitle()} + ', ' + ${book.getAuthor()}"></a>
         </div>
 
-        <div th:each="i : ${#numbers.sequence(0, pageCount - 1)}" class="red-star">
-            <a th:href="@{/books(page=${i})}"
-               th:text = "${i}">
-            </a>
-        </div>
 
-        <form th:method="GET" th:action="@{/books}">
-            <label >Выберите страницу</label>
-            <select th:object="${bookPerPage}">
-                <option th:value="1" th:text="1">1</option>
-                <option th:value="2" th:text="2">2</option>
-                <option th:value="5" th:text="5">5</option>
+        <form th:method="GET" th:action="@{/books(page=${page})(bookPerPage=${bookPerPage})}">
+            <label for="page">Выберите страницу</label>
+            <select th:object="${books}" th:field="${page}" id="page">
+                <option th:each="i : ${#numbers.sequence(0, pageCount - 1)}" th:value="${i}" th:text = "${i}" >
+                </option>
             </select>
+
+            <label for="bookPerPage">Выберите количество книг на странице</label>
+            <select th:object="${books}" th:field="${bookPerPage}" id="bookPerPage">
+                <option th:each="j : ${#numbers.sequence(1, pageCount)}" th:value="${j}" th:text = "${j}">
+                </option>
+            </select>
+            <input type="submit" value="Выбрать страницу"/>
         </form>
 
         <br/>
