@@ -31,6 +31,7 @@ public class Person {
     @Column(name="year_of_birth")
     private Integer yearOfBirth;
 
+    @ToString.Exclude
     @OneToMany(mappedBy= "person")
     private List<Book> books = new ArrayList<>();
 

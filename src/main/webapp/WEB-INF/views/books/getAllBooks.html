@@ -12,15 +12,15 @@
         </div>
 
 
-        <form th:method="GET" th:action="@{/books(page=${page})(bookPerPage=${bookPerPage})}">
+        <form th:method="GET" th:action="@{/books}">
             <label for="page">Выберите страницу</label>
-            <select th:object="${books}" th:field="${page}" id="page">
+            <select th:object="${books}" name="*{page}" id="page">
                 <option th:each="i : ${#numbers.sequence(0, pageCount - 1)}" th:value="${i}" th:text = "${i}" >
                 </option>
             </select>
 
             <label for="bookPerPage">Выберите количество книг на странице</label>
-            <select th:object="${books}" th:field="${bookPerPage}" id="bookPerPage">
+            <select th:object="${books}" name="*{bookPerPage}" id="bookPerPage">
                 <option th:each="j : ${#numbers.sequence(1, pageCount)}" th:value="${j}" th:text = "${j}">
                 </option>
             </select>

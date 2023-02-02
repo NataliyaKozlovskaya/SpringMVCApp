@@ -8,4 +8,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PeopleRepository extends JpaRepository <Person, Integer> {
     Person findByFullName(String fullName);
+
+
+
+//    Person findByBookId(Integer id);
+//    Person findByTitle(String title);
 }

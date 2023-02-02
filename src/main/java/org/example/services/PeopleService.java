@@ -1,6 +1,7 @@
 package org.example.services;
 
 import org.example.models.Person;
+import org.example.repositories.BooksRepository;
 import org.example.repositories.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +14,11 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class PeopleService {
     private final PeopleRepository peopleRepository;
-
+    private final BooksRepository booksRepository;
     @Autowired
-    public PeopleService(PeopleRepository peopleRepository) {
+    public PeopleService(PeopleRepository peopleRepository, BooksRepository booksRepository) {
         this.peopleRepository = peopleRepository;
+        this.booksRepository = booksRepository;
     }
 
     public List<Person> findAll() {
@@ -48,4 +50,11 @@ public class PeopleService {
         peopleRepository.deleteById(id);
     }
 
+//    public Person findByBookId(Integer id){
+//        return peopleRepository.findByBookId(id);
+//    }
+
+//    public Person findByTitle(String title){
+//        return peopleRepository.findByTitle(title);
+//    }
 }

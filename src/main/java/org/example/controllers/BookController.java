@@ -6,6 +6,7 @@ import org.example.services.BooksService;
 import org.example.services.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,19 +48,19 @@ public class BookController {
         model.addAttribute("page", page);
         return "books/getAllBooks";
     }
-    @GetMapping("/page={page}/bookPerPage={bookPerPage}")
-    public String paginationPage(@RequestParam("page") Integer page,
-                                 @RequestParam("bookPerPage") Integer bookPerPage,
-                                 Model model){
-
-        long countOfBooks = booksService.findCount();
-        Page<Book> books = booksService.findPage(page, bookPerPage);
-        model.addAttribute("books", books);
-
-        long pageCount = getPageCount(countOfBooks, bookPerPage);
-        model.addAttribute("pageCount", pageCount);
-        return "books/getAllBooks";
-    }
+//    @GetMapping
+//    public String paginationPage(@RequestParam("page") Integer page,
+//                                 @RequestParam("bookPerPage") Integer bookPerPage,
+//                                 Model model){
+//
+//        long countOfBooks = booksService.findCount();
+//        Page<Book> books = booksService.findPage(page, bookPerPage);
+//        model.addAttribute("books", books);
+//
+//        long pageCount = getPageCount(countOfBooks, bookPerPage);
+//        model.addAttribute("pageCount", pageCount);
+//        return "books/getAllBooks";
+//    }
 
 
 //@Controller
@@ -166,19 +167,17 @@ public class BookController {
     }
 
     @GetMapping("/search")
-    public String searchBook(@RequestParam("str") String str,  Model model) {
-        String searchBook = booksService.findByTitleLike(str);
-//        String book = booksService.findByTitle(title);
-//        model.addAttribute("book", book);
-//        Optional<Person> owner = Optional.ofNullable(book.getPerson());
-        List<Book> bookList = booksService.findAll();
-        model.addAttribute("bookList", bookList);
-        if (!searchBook.isEmpty()){
-            model.addAttribute("searchBook", searchBook);
-//            model.addAttribute("owner", owner);
+    public String searchBook(@RequestParam(value="title", required = false) Optional<String> title,  Model model) {
+        if(title.isPresent()){
+            System.out.println(title.get());
+            List<Book> books = booksService.findByTitleIsContaining(title.get());
+            System.out.println("нашли");
+            model.addAttribute("searchBook", books.get(0));
+
+//            Person person = books.get(0).getPerson();
+//            System.out.println(person);
+//            model.addAttribute("person", person);
         }
         return "books/search";
     }
-
-
 }
