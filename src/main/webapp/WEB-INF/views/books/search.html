@@ -6,30 +6,32 @@
 </head>
 <body>
 
-
 <form th:method="GET" th:action="@{/books/search}" th:object="${searchBook}">
-
     <label for="searchBook">Введите поисковой запрос: </label>
     <input type="text" name="title" id="searchBook"/>
+    <br/>
     <br/>
     <input type="submit" value="Искать!"/>
 </form>
 
-    <div th:if="${searchBook}">
-        <p th:text="${searchBook.getTitle()} + ', ' + ${searchBook.getAuthor()} + ', '+ ${searchBook.getYear()}">VALUE</p>
-            <span>Книга сейчас у: </span> <span th:text="${searchBook.getPerson().getFullName()}"></span>
-        <div th:if="${searchBook.getPerson().getFullName().isEmpty()}">
+    <div th:if="${searchBook}"
+        th:each="book : ${searchBook}">
+        <div th:if="${data}" style="color:red">
+        <p th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} + ', '+ ${book.getYear()}" >VALUE</p></div>
+        <div th:unless="${data}" style="color:black">
+            <p th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} + ', '+ ${book.getYear()}" >VALUE</p></div>
+
+        <span style="font-weight:bold "> Книга сейчас у: </span>
+        <span th:text="${book.getPerson().getFullName()}"></span>
+
+        <div th:if="${book.getPerson().getFullName().isEmpty()}">
             <span>Книга свободна</span>
         </div>
     </div>
-    <div th:if="${!searchBook}">
+    <div th:if="${searchBook.isEmpty()}">
+        <br/>
         <span>Книг не найдено</span>
     </div>
-
-<!--    <div th:if="${book.getDate()}>today"-->
-<!--            style="color:red" >-->
-<!--    </div>-->
-
 
 </body>
 </html>

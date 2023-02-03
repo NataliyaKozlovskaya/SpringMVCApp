@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -31,6 +32,9 @@ public class Book {
 
     @Min(value = 1900, message = "Age should be bigger than 1900")
     private Integer year;
+
+    @Column(name="data")
+    private Date data;
 
     @ManyToOne
     @JoinColumn(name="personId", referencedColumnName = "id")

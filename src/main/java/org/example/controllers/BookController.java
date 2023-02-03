@@ -5,6 +5,7 @@ import org.example.models.Person;
 import org.example.services.BooksService;
 import org.example.services.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.auditing.CurrentDateTimeProvider;
 import org.springframework.data.domain.Page;
 import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,12 +34,12 @@ public class BookController {
         this.peopleService = peopleService;
     }
 
-//ПАГИНАЦИЯ
+    //ПАГИНАЦИЯ
     @GetMapping
     public String getAllBooks(Model model) {
 
-        Integer page=0;
-        Integer bookPerPage=2;
+        Integer page = 0;
+        Integer bookPerPage = 5;
 
         long countOfBooks = booksService.findCount();
 
@@ -167,17 +172,56 @@ public class BookController {
     }
 
     @GetMapping("/search")
-    public String searchBook(@RequestParam(value="title", required = false) Optional<String> title,  Model model) {
-        if(title.isPresent()){
+    public String searchBook(@RequestParam(value = "title", required = false) Optional<String> title, Model model) {
+        if (title.isPresent()) {
             System.out.println(title.get());
             List<Book> books = booksService.findByTitleIsContaining(title.get());
             System.out.println("нашли");
-            model.addAttribute("searchBook", books.get(0));
+            model.addAttribute("searchBook", books);
 
-//            Person person = books.get(0).getPerson();
-//            System.out.println(person);
-//            model.addAttribute("person", person);
+            for (Book book : books) {
+                //2023-01-19 00:00:00.0
+                Date data = book.getData();
+                long time = data.getTime();
+                Date dateN = new Date();
+                long timeN = dateN.getTime();
+                System.out.println(timeN - time);
+                if ((timeN - time) > 864000000) {
+                    model.addAttribute("data", data);
+                }
+            }
         }
         return "books/search";
     }
 }
+
+
+
+//2023-02-03
+//            System.out.println(new java.sql.Date(System.currentTimeMillis()));
+
+//                System.out.println(data);
+//                SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd");
+//                String formatData = formatForDateNow.format(book.getData());
+////  2023-01-19
+//            System.out.println(formatData);
+//                if((formatData + 10) > System.currentTimeMillis()){
+//                if((formatData.getT + 10) > System.currentTimeMillis()){
+//
+//            Date date=new Date();
+//            LocalDateTime dateTime = LocalDateTime.now();
+//            System.out.println(LocalDateTime.now());
+//            System.out.println(ZonedDateTime. now());
+
+
+//            SimpleDateFormat formatForDateNow = new SimpleDateFormat("E yyyy.MM.dd");
+//            System.out.println(formatForDateNow.format(date));
+
+
+//            long dateTime = date.getTime();
+//            System.out.println(date.toString());
+//            model.addAttribute("dateTime", dateTime);
+
+//            Person person = books.get(0).getPerson();
+//            System.out.println(person);
+//            model.addAttribute("person", person);
