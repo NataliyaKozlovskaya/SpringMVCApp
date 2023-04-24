@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Список всех книг</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <title>Список всех книг</title>
+</head>
+<body>
 
-        <div th:each="book : ${books}">
-            <a th:href="@{/books/{id}(id=${book.getId()})}"
-               th:text = "${book.getTitle()} + ', ' + ${book.getAuthor()}"></a>
-        </div>
+<div th:each="book : ${books}">
+    <p th:href="@{/books/{id}(id=${book.getId()})}"></p>
+    <div th:if="${data}" style="color:red"
+        th:text = "${book.getTitle()} + ', ' + ${book.getAuthor()}">
+    </div>
+    <div th:unless="${data}" style="color:blue">
+        <p th:text = "${book.getTitle()} + ', ' + ${book.getAuthor()}"></p>
+    </div>
+</div>
 
+<form th:method="GET" th:action="@{/books}">
+    <label for="page">Выберите страницу</label>
+    <select th:object="${books}" name="*{page}" id="page">
+        <option th:each="i : ${#numbers.sequence(0, pageCount - 1)}" th:value="${i}" th:text = "${i}"></option>>
+    </select>
 
-        <form th:method="GET" th:action="@{/books}">
-            <label for="page">Выберите страницу</label>
-            <select th:object="${books}" name="*{page}" id="page">
-                <option th:each="i : ${#numbers.sequence(0, pageCount - 1)}" th:value="${i}" th:text = "${i}" >
-                </option>
-            </select>
+    <label for="bookPerPage">Выберите количество книг на странице</label>
+    <select th:object="${books}" name="*{bookPerPage}" id="bookPerPage">
+        <option th:each="j : ${#numbers.sequence(1, pageCount)}" th:value="${j}" th:text = "${j}">
+        </option>
+    </select>
 
-            <label for="bookPerPage">Выберите количество книг на странице</label>
-            <select th:object="${books}" name="*{bookPerPage}" id="bookPerPage">
-                <option th:each="j : ${#numbers.sequence(1, pageCount)}" th:value="${j}" th:text = "${j}">
-                </option>
-            </select>
-            <input type="submit" value="Выбрать страницу"/>
-        </form>
+    <input type="sub    mit" value="Выбрать"/>
+</form>
 
-        <br/>
-        <hr/>
-        <a href="/books/newBook">Добавить книгу</a>
-        <br/>
-        <a href="/books/search">Искать книгу</a>
+<br/>
+<hr/>
+<a href="/books/newBook">Добавить книгу</a>
+<br/>
+<a href="/books/search">Искать книгу</a>
+
     </body>
 </html>

@@ -17,9 +17,9 @@
     <div th:if="${searchBook}"
         th:each="book : ${searchBook}">
         <div th:if="${data}" style="color:red">
-        <p th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} + ', '+ ${book.getYear()}" >VALUE</p></div>
+        <p th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} + ', '+ ${book.getYear()}">VALUE</p></div>
         <div th:unless="${data}" style="color:black">
-            <p th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} + ', '+ ${book.getYear()}" >VALUE</p></div>
+            <p th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} + ', '+ ${book.getYear()}">VALUE</p></div>
 
         <span style="font-weight:bold "> Книга сейчас у: </span>
         <span th:text="${book.getPerson().getFullName()}"></span>

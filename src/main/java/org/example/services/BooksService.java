@@ -95,9 +95,10 @@ public class BooksService {
     public List<Book> findByTitleIsContaining(String title){
         return booksRepository.findByTitleIsContaining(title);
     }
-//    public List<Book> findAll(){
-//        return booksRepository.findAll();
-//    }
+
+    public List<Book> findAll(){
+        return booksRepository.findAll();
+    }
 //    public Optional<String> findByBook(Optional<Book> book){
 //        Optional<Person> person = Optional.ofNullable(book.get().getPerson());
 //        return Optional.ofNullable(person.get().getFullName());
